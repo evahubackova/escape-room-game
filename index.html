@@ -102,18 +102,13 @@
             console.log(`Vygenerováno a uloženo číslo: ${newNumber}. Aktuální uložená čísla:`, storedNumbers);
         }
 
-        // Automaticky generovat číslo při načtení stránky, pokud není v Local Storage nebo je pole prázdné
+        // ***** ZMĚNA ZDE *****
+        // Automaticky generovat nové číslo PŘI KAŽDÉM načtení stránky
         window.onload = function() {
-            let storedNumbers = JSON.parse(localStorage.getItem('escapeRoomNumbers')) || [];
-            if (storedNumbers.length === 0) {
-                generateAndSaveNumber(); // Generuje a ukládá nové číslo
-            } else {
-                // Pokud už čísla existují, zobrazí poslední vygenerované
-                randomNumberDisplay.innerText = storedNumbers[storedNumbers.length - 1];
-            }
-            // Tlačítko pro generování nového čísla (přepisuje poslední pozici)
-            generateButton.addEventListener('click', generateAndSaveNumber);
+            generateAndSaveNumber(); // Vždy vygeneruje a uloží nové číslo při načtení stránky
+            generateButton.addEventListener('click', generateAndSaveNumber); // Tlačítko pro manuální regeneraci
         };
+        // ***** KONEC ZMĚNY *****
     </script>
 </body>
 </html>
